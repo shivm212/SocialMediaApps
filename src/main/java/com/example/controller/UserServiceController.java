@@ -17,6 +17,8 @@ import com.example.dao.UserDaoService;
 import com.example.entity.User;
 import com.example.exception.UserNotFoundException;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class UserServiceController {
 	
@@ -37,7 +39,7 @@ public class UserServiceController {
 	}
 	
 	@PostMapping("/users")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		User savedUser = userDaoService.addUser(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 						.path("/{id}")
